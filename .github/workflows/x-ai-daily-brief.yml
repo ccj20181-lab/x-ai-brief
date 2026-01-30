@@ -1,0 +1,75 @@
+name: X AI 博主精选简报
+
+on:
+  # Daily schedule: 07:00 Beijing Time (23:00 UTC)
+  schedule:
+    - cron: '0 23 * * *'
+
+  # Manual trigger
+  workflow_dispatch:
+
+env:
+  ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+jobs:
+  generate-brief:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Install Bird CLI
+        run: |
+          curl -L https://github.com/steipete/bird/releases/download/v0.8.0/bird-x86_64-apple-darwin -o /tmp/bird
+          chmod +x /tmp/bird
+          echo "✓ Bird CLI downloaded"
+
+      - name: Run Brief Generator
+        env:
+          BIRD_AUTH_TOKEN: ${{ secrets.BIRD_AUTH_TOKEN }}
+          BIRD_CT0: ${{ secrets.BIRD_CT0 }}
+        run: |
+          cd scripts && python x_ai_digest.py
+        continue-on-error: false
+
+      - name: Push to WeChat
+        if: success()
+        env:
+          PUSHPLUS_TOKEN: ${{ secrets.PUSHPLUS_TOKEN }}
+        run: |
+          cd scripts && python send_pushplus.py
+        continue-on-error: true
+
+      - name: Upload Brief Data
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ai-brief-${{ github.run_number }}
+          path: |
+            digests/*.md
+          retention-days: 30
+
+      - name: Failure Notification
+        if: failure()
+        run: |
+          curl -X POST https://www.pushplus.plus/send \
+            -H "Content-Type: application/json" \
+            -d '{
+              "token": "${{ secrets.PUSHPLUS_TOKEN }}",
+              "title": "⚠️ X AI 博主简报执行失败",
+              "content": "GitHub Actions 执行失败，请查看日志: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}",
+              "template": "html"
+            }' || true
