@@ -33,9 +33,10 @@ jobs:
 
       - name: Install Bird CLI
         run: |
-          curl -L https://github.com/steipete/bird/releases/download/v0.8.0/bird-x86_64-apple-darwin -o /tmp/bird
+          curl -L https://github.com/steipete/bird/releases/download/v0.8.0/bird-x86_64-unknown-linux-gnu -o /tmp/bird
           chmod +x /tmp/bird
-          echo "✓ Bird CLI downloaded"
+          sudo mv /tmp/bird /usr/local/bin/bird
+          echo "✓ Bird CLI installed to /usr/local/bin/bird"
 
       - name: Run Brief Generator
         env:
