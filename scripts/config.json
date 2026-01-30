@@ -1,0 +1,118 @@
+{
+    "rss_feeds": {
+        "dotey": {
+            "name": "宝玉",
+            "url": "dotey",
+            "category": "AI工具"
+        },
+        "winter_cn": {
+            "name": "winter",
+            "url": "winter_cn",
+            "category": "AI编程"
+        },
+        "binghe": {
+            "name": "冰河",
+            "url": "binghe",
+            "category": "AI实战"
+        },
+        "frankdegods": {
+            "name": "Frank",
+            "url": "frankdegods",
+            "category": "AI投资"
+        },
+        "steipete": {
+            "name": "Peter Steinberger",
+            "url": "steipete",
+            "category": "AI工具开发"
+        },
+        "cafe99": {
+            "name": "cafe99",
+            "url": "cafe99",
+            "category": "AI内容创作"
+        },
+        "tazi8848": {
+            "name": "塔子",
+            "url": "tazi8848",
+            "category": "提示词工程"
+        },
+        "XiongJingzhi": {
+            "name": "熊敬之",
+            "url": "XiongJingzhi",
+            "category": "AI工程化"
+        },
+        "HappyQQ_AI": {
+            "name": "HappyQQ",
+            "url": "HappyQQ_AI",
+            "category": "Skills"
+        },
+        "wanerfu": {
+            "name": "摆烂程序媛",
+            "url": "wanerfu",
+            "category": "AI学习"
+        },
+        "simonwongio": {
+            "name": "Simon Wong",
+            "url": "simonwongio",
+            "category": "AI思考"
+        },
+        "A9Quant": {
+            "name": "boon陈庚阳",
+            "url": "A9Quant",
+            "category": "金融AI"
+        },
+        "keitaro_aigc": {
+            "name": "keitaro",
+            "url": "keitaro_aigc",
+            "category": "Notion AI"
+        },
+        "geyunfei": {
+            "name": "老拐瘦",
+            "url": "geyunfei",
+            "category": "AI应用"
+        },
+        "StarRiverXH": {
+            "name": "星河",
+            "url": "StarRiverXH",
+            "category": "AI编程工具"
+        },
+        "vkdefi": {
+            "name": "vkdefi",
+            "url": "vkdefi",
+            "category": "AI工具"
+        },
+        "JayFlareRay": {
+            "name": "JayFlareRay",
+            "url": "JayFlareRay",
+            "category": "自动化"
+        },
+        "muzi6885": {
+            "name": "沐沐",
+            "url": "muzi6885",
+            "category": "AI效率"
+        },
+        "CGrosbier65126": {
+            "name": "Cristopher",
+            "url": "CGrosbier65126",
+            "category": "自动化"
+        },
+        "BTCProguy": {
+            "name": "BTCProguy",
+            "url": "BTCProguy",
+            "category": "AI工程"
+        }
+    },
+    "claude": {
+        "model": "claude-3-5-sonnet-20241022",
+        "max_tokens": 8000,
+        "temperature": 0.3
+    },
+    "output": {
+        "digests_dir": "digests",
+        "date_format": "%Y-%m-%d"
+    },
+    "filters": {
+        "min_length": 50,
+        "exclude_keywords": ["转发", "RT@", "广告"],
+        "include_keywords": ["AI", "Claude", "Cursor", "工具", "技巧", "工作流", "效率", "自动化", "提示词"]
+    }
+}
